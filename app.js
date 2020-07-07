@@ -67,4 +67,40 @@ function countZeros(n) {
   return word.split("").filter((w) => w === "0").length;
 }
 
-console.log(countZeros(12125));
+function pairSum(array, sum) {
+  let hashMap = {},
+    results = [];
+
+  for (let i = 0; i < array.length; i++) {
+    console.log(hashMap);
+
+    if (hashMap[array[i]]) {
+      results.push([hashMap[array[i]], array[i]]);
+    } else {
+      hashMap[sum - array[i]] = array[i];
+    }
+  }
+  return results;
+}
+
+function diamond(n) {
+  if (n < 0 || n % 2 === 0) return null;
+  let diamond = "";
+
+  for (let i = 0; i < n; i++) {
+    let len = Math.abs((n - 2 * i - 1) / 2);
+    diamond += " ".repeat(len);
+    diamond += "*".repeat(n - 2 * len);
+    diamond += "\n";
+  }
+  return diamond;
+}
+
+function removeSmallest(numbers) {
+  const indexOfMin = numbers.indexOf(Math.min(...numbers));
+  // if (indexOfMin > -1) {
+  //   numbers.splice(indexOfMin, 1);
+  // }
+  return [...numbers.slice(0, indexOfMin), ...numbers.slice(indexOfMin + 1)];
+  // return numbers;
+}
